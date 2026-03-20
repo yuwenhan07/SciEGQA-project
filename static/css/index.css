@@ -716,7 +716,7 @@ img {
 
 .doc-stack {
   position: relative;
-  height: 27.8rem;
+  height: 23.6rem;
   padding: 0.9rem 0.85rem 1rem;
   background:
     radial-gradient(circle at top left, rgba(15, 123, 123, 0.08), transparent 35%),
@@ -725,28 +725,34 @@ img {
 
 .doc-page {
   position: absolute;
-  width: 72%;
-  max-width: 28rem;
+  width: 76%;
+  max-width: 30rem;
   overflow: hidden;
-  box-shadow: 0 18px 42px rgba(16, 42, 44, 0.14);
+  box-shadow: 0 14px 34px rgba(17, 37, 40, 0.12);
 }
 
 .doc-page-back {
-  left: 2%;
-  top: 2%;
+  left: 0.85rem;
+  top: 0.9rem;
   z-index: 1;
 }
 
 .doc-page-mid {
-  left: 12%;
-  top: 5%;
+  left: 2.05rem;
+  top: 2.25rem;
   z-index: 2;
 }
 
 .doc-page-front {
-  left: 22%;
-  top: 8%;
+  right: 0.85rem;
+  top: 3.65rem;
   z-index: 3;
+}
+
+.doc-page img {
+  width: 100%;
+  max-height: 23rem;
+  object-fit: cover;
 }
 
 .doc-stack-label {
@@ -834,6 +840,21 @@ img {
 .bbox-figure img,
 .image-frame img {
   width: 100%;
+}
+
+.image-bottom-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 0.9rem;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 8px 22px rgba(17, 37, 40, 0.12);
 }
 
 .bbox-rect {

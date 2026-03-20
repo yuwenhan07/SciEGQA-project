@@ -36,6 +36,7 @@
           <a class="navbar-item" href="#overview">Overview</a>
           <a class="navbar-item" href="#construction">Construction</a>
           <a class="navbar-item" href="#examples">Examples</a>
+          <a class="navbar-item" href="#task">Tasks</a>
           <a class="navbar-item" href="#stats">Statistics</a>
           <a class="navbar-item" href="#paper">Paper</a>
           <a class="navbar-item" href="#downloads">Downloads</a>
@@ -343,7 +344,7 @@
     </div>
   </section>
 
-  <section class="section section-shell section-accent">
+  <section id="examples" class="section section-shell section-accent">
     <div class="container is-max-widescreen">
       <p class="section-kicker">Examples</p>
       <h2 class="title is-2 section-title">Three types of questions</h2>
@@ -448,7 +449,7 @@
     </div>
   </section>
 
-  <section id="examples" class="section section-shell">
+  <section id="task" class="section section-shell">
     <div class="container is-max-widescreen">
       <p class="section-kicker">Task</p>
       <h2 class="title is-2 section-title">Definitions of Five Evaluation Tasks</h2>
@@ -463,21 +464,20 @@
 
       <div class="tab-panels">
         <article class="example-panel is-active" id="doc-view">
+
           <div class="columns is-variable is-5 is-vcentered">
             <div class="column is-7-desktop">
-              <div class="image-frame doc-stack">
-                <img class="doc-sheet doc-sheet-back" src="./static/images/sample-page-table.png" alt="Back page in document stack">
-                <img class="doc-sheet doc-sheet-mid" src="./static/images/sample-page-spmr.png" alt="Middle page in document stack">
-                <img class="doc-sheet doc-sheet-front" src="./static/images/sample-page-figure.png" alt="Front page in document stack">
-                <span class="doc-stack-label">Whole-document PNG stack</span>
+              <div class="bbox-figure">
+                <img src="./static/images/sample-cover.png" alt="Page-level SciEGQA example">
+                <p class="image-bottom-caption"><strong>The whole document</strong></p>
               </div>
             </div>
             <div class="column is-5-desktop">
               <span class="mode-badge">image_mode: document</span>
-              <h3 class="example-title">Answer from the full document context</h3>
-              <p class="example-query"><strong>Question:</strong> The model receives a stacked whole-document PNG representation instead of a single page or cropped evidence region.</p>
-              <p class="example-answer"><strong>Input:</strong> All document pages rendered as full-page images.</p>
-              <p class="example-meta"><strong>Use Case:</strong> End-to-end document QA before page selection or region grounding.</p>
+              <h3 class="example-title">Answer from the full document images</h3>
+              <p class="example-query"><strong>Question:</strong> In the figure, which letter uniquely receives two arrows, and from which letters do they come?</p>
+              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
+              <p class="example-meta"><strong>Predicted Answer:</strong> Letter D receives two arrows, one from letter C and one from letter E. </p>
               <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
             </div>
           </div>
@@ -494,7 +494,7 @@
             <div class="column is-5-desktop">
               <span class="mode-badge">image_mode: page</span>
               <h3 class="example-title">Answer directly from the original page</h3>
-              <p class="example-query"><strong>Question:</strong>In the figure, which letter uniquely receives two arrows, and from which letters do they come?</p>
+              <p class="example-query"><strong>Question:</strong> In the figure, which letter uniquely receives two arrows, and from which letters do they come?</p>
               <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
               <p class="example-meta"><strong>Predicted Answer:</strong> D receives two arrows, from C and E. </p>
               <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
@@ -512,7 +512,7 @@
             <div class="column is-5-desktop">
               <span class="mode-badge">image_mode: crop</span>
               <h3 class="example-title">Answer from the cropped region</h3>
-              <p class="example-query"><strong>Question:</strong>The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
+              <p class="example-query"><strong>Question:</strong> The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
               <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
               <p class="example-meta"><strong>Predicted Answer:</strong> D, from C and E</p>
               <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
@@ -549,7 +549,7 @@
             <div class="column is-5-desktop">
               <span class="mode-badge">image_mode: pred_bbox_crop</span>
               <h3 class="example-title">Answer from cropped regions from predicted evidence boxes </h3>
-              <p class="example-query"><strong>Question:</strong>The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
+              <p class="example-query"><strong>Question:</strong> The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
               <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
               <p class="example-answer"><strong>Predicted Answer:</strong> D receives two arrows, from C and E.</p>
               <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
