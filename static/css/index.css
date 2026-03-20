@@ -627,6 +627,35 @@ img {
   padding: 1rem;
 }
 
+.mpmr-stack {
+  position: relative;
+  height: 23rem;
+  padding: 0.9rem 0.85rem 1rem;
+}
+
+.mpmr-stack .bbox-figure {
+  position: absolute;
+  width: 61%;
+  box-shadow: 0 14px 34px rgba(17, 37, 40, 0.12);
+}
+
+.mpmr-left {
+  top: 0.9rem;
+  left: 0.85rem;
+  z-index: 1;
+}
+
+.mpmr-right {
+  right: 0.85rem;
+  top: 6.1rem;
+  z-index: 2;
+}
+
+.mpmr-stack .bbox-figure img {
+  max-height: 16rem;
+  object-fit: cover;
+}
+
 .bbox-figure img,
 .image-frame img {
   width: 100%;
@@ -915,5 +944,23 @@ img {
 
   .image-pair {
     grid-template-columns: 1fr;
+  }
+
+  .mpmr-stack {
+    position: static;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .mpmr-stack .bbox-figure {
+    position: relative;
+    width: 100%;
+  }
+
+  .mpmr-left,
+  .mpmr-right {
+    top: auto;
+    left: auto;
+    right: auto;
   }
 }
