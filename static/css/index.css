@@ -201,6 +201,11 @@ img {
   font-weight: 700;
 }
 
+.split-badge {
+  font-size: 16px;
+  font-weight: 600;  /* 加粗 */
+}
+
 .project-chip {
   background: rgba(15, 123, 123, 0.1);
   color: var(--primary-deep);
@@ -577,16 +582,25 @@ img {
   align-items: center;
   padding: 0.78rem 0.72rem 0.78rem 0.68rem;
   border-radius: 0.62rem;
-  background: rgba(255, 255, 255, 0.74);
-  border: 1px solid rgba(16, 42, 44, 0.08);
+  background: rgba(250, 249, 245, 0.96);
+  border: none;
+  box-shadow: 0 8px 18px rgba(17, 37, 40, 0.05);
   min-height: 4.7rem;
+}
+
+.pipeline-card.benchmark .pipeline-step {
+  background: linear-gradient(180deg, rgba(255, 248, 242, 0.96), rgba(255, 255, 255, 0.94));
+}
+
+.pipeline-card.training .pipeline-step {
+  background: linear-gradient(180deg, rgba(243, 251, 249, 0.96), rgba(255, 255, 255, 0.94));
 }
 
 .step-index {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 1.75rem;
+  min-height: 1.9rem;
   border-radius: 0.48rem;
   background: linear-gradient(135deg, rgba(15, 123, 123, 0.12), rgba(239, 140, 58, 0.14));
   color: var(--primary-deep);
@@ -921,12 +935,19 @@ img {
   height: 100%;
 }
 
+.stats-card-wide {
+  width: 100%;
+}
+
 .bar-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.4rem;
   margin-top: 1.3rem;
 }
 
 .bar-row + .bar-row {
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .bar-meta {
@@ -1076,6 +1097,10 @@ img {
   }
 
   .sidecard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bar-group {
     grid-template-columns: 1fr;
   }
 
