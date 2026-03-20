@@ -49,7 +49,7 @@
       <div class="container is-max-widescreen">
         <div class="columns is-vcentered hero-grid">
           <div class="column is-7-desktop">
-            <p class="eyebrow">Dataset / Project Page</p>
+            <p class="eyebrow">Dataset Page</p>
             <h1 class="title is-1 publication-title">SciEGQA</h1>
             <h2 class="subtitle hero-subtitle">A Dataset for Visual Evidence-Grounded Question Answering on Scientific Documents</h2>
 
@@ -119,7 +119,7 @@
               </div>
               <div class="metric-card">
                 <p class="metric-value">30,780</p>
-                <p class="metric-label">Training QA pairs</p>
+                <p class="metric-label">Training Set QA pairs</p>
               </div>
               <div class="metric-card">
                 <p class="metric-value">8</p>
@@ -127,7 +127,7 @@
               </div>
               <div class="metric-card">
                 <p class="metric-value">3</p>
-                <p class="metric-label">Task types</p>
+                <p class="metric-label">Question types</p>
               </div>
             </div>
           </div>
@@ -141,19 +141,23 @@
               <div class="sidecard-grid">
                 <div>
                   <p class="sidecard-key">Benchmark</p>
-                  <p class="sidecard-value">80 papers / 1,941 pages</p>
+                  <p class="sidecard-value">80 papers </p>
+                  <p class="sidecard-value">1,941 pages</p>
                 </div>
                 <div>
                   <p class="sidecard-key">Training Set</p>
-                  <p class="sidecard-value">3,671 papers / 42,380 pages</p>
+                  <p class="sidecard-value">3,671 papers</p>
+                  <p class="sidecard-value">42,380 pages</p>
                 </div>
                 <div>
                   <p class="sidecard-key">Annotation</p>
-                  <p class="sidecard-value">12 annotators + 24 domain experts</p>
+                  <p class="sidecard-value">12 annotators</p>
+                  <p class="sidecard-value">24 domain experts</p>
                 </div>
                 <div>
-                  <p class="sidecard-key">Protocol</p>
-                  <p class="sidecard-value">Answer + bbox grounding</p>
+                  <p class="sidecard-key">Evidence</p>
+                  <p class="sidecard-value">Evidence page(s)</p>
+                  <p class="sidecard-value">Evidence region(s)</p>
                 </div>
               </div>
             </div>
@@ -180,22 +184,10 @@
             model answers correctly and whether it actually found the right visual support.
           </p>
 
-          <div class="feature-grid">
-            <article class="feature-card">
-              <span class="feature-icon"><i class="fas fa-crosshairs"></i></span>
-              <h3>Evidence-grounded</h3>
-              <p>Each sample stores evidence pages, absolute and relative bounding boxes, region type, category, and document id.</p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-icon"><i class="fas fa-clone"></i></span>
-              <h3>Multiple views</h3>
-              <p>Page, crop, bbox prediction, and predicted-crop variants support both grounding and answer-generation experiments.</p>
-            </article>
-            <article class="feature-card">
-              <span class="feature-icon"><i class="fas fa-vials"></i></span>
-              <h3>Evaluation-ready</h3>
-              <p>The repository includes answer judging, IoU metrics, local generation, API generation, and training-set construction.</p>
-            </article>
+          <div class="keyword-row">
+            <span class="keyword-chip">Evidence Grounding</span>
+            <span class="keyword-chip">Multi-View Data</span>
+            <span class="keyword-chip">Evaluation Pipeline</span>
           </div>
         </div>
 
@@ -230,8 +222,8 @@
           <ul class="compact-list">
             <li>1,623 QA samples</li>
             <li>1,941 pages</li>
-            <li>80 papers across 8 arXiv categories</li>
-            <li>SPSR / SPMR / MPMR task split</li>
+            <li>80 papers</li>
+            <li>Human fine-grained annotated</li>
           </ul>
         </article>
 
@@ -254,22 +246,21 @@
 
         <article class="split-card">
           <div class="split-header">
-            <span class="split-badge accent-tertiary">Input format</span>
+            <span class="split-badge accent-tertiary">Data format</span>
             <h3>Structured records</h3>
           </div>
           <p class="split-copy">
-            The repository includes raw benchmark examples and converted ShareGPT-style multimodal data compatible
-            with LlamaFactory-oriented workflows.
+            Overview of the raw data formats.
           </p>
           <pre class="code-panel"><code>{
   "query": "...",
   "answer": "...",
-  "evidence_page": [4],
-  "bbox": [[[281, 2228, 1890, 2941]]],
-  "rel_bbox": [[[0.110196, 0.675152, 0.741176, 0.891212]]],
-  "subimg_type": [["image"]],
-  "doc_name": "2311.07631",
-  "category": "cs"
+  "evidence_page": [x],
+  "bbox": [[[x1, y1, x2, y2]]],
+  "rel_bbox": [[[rel_x1, rel_y1, rel_x2, rel_y2]]],
+  "subimg_type": [["category"]],
+  "doc_name": "xxxxxx",
+  "category": "xxx"
 }</code></pre>
         </article>
       </div>

@@ -309,7 +309,7 @@ img {
   margin-bottom: 1rem;
 }
 
-.feature-grid,
+.keyword-row,
 .split-grid,
 .task-grid,
 .sample-grid,
@@ -320,17 +320,28 @@ img {
   gap: 1.2rem;
 }
 
-.feature-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.keyword-row {
+  grid-template-columns: repeat(3, max-content);
   margin-top: 1.6rem;
+  align-items: center;
+  gap: 0.8rem;
 }
 
-.feature-card {
-  border-radius: 0.9rem;
-  padding: 1.25rem;
+.keyword-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 123, 123, 0.14);
+  background: rgba(15, 123, 123, 0.08);
+  color: var(--primary-deep);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.feature-card h3,
 .split-card h3,
 .task-card h3,
 .stats-card h3,
@@ -342,7 +353,6 @@ img {
   font-size: 1.08rem;
 }
 
-.feature-card p,
 .split-card p,
 .task-card p,
 .resource-card p,
@@ -352,7 +362,6 @@ img {
   margin: 0;
 }
 
-.feature-icon,
 .cap-icon,
 .resource-icon {
   display: inline-flex;
@@ -839,7 +848,7 @@ img {
 
 @media screen and (max-width: 1215px) {
   .hero-stats,
-  .feature-grid,
+  .keyword-row,
   .split-grid,
   .task-grid,
   .sample-grid,
@@ -867,7 +876,7 @@ img {
   }
 
   .hero-stats,
-  .feature-grid,
+  .keyword-row,
   .split-grid,
   .task-grid,
   .sample-grid,
@@ -919,7 +928,6 @@ img {
   .stats-card,
   .paper-card,
   .resource-card,
-  .feature-card,
   .timeline-card,
   .example-panel {
     border-radius: 0.85rem;
@@ -940,6 +948,15 @@ img {
   .tab-button {
     width: 100%;
     text-align: left;
+  }
+
+  .keyword-row {
+    grid-template-columns: 1fr;
+  }
+
+  .keyword-chip {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .image-pair {
