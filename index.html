@@ -434,15 +434,14 @@
             <div class="column is-7-desktop">
               <div class="bbox-figure">
                 <img src="./static/images/sample-page-figure.png" alt="BBox prediction example">
-                <span class="bbox-rect cyan" style="left:11.0196%; top:67.5152%; width:63.0980%; height:21.6060%;"></span>
+                <span class="bbox-rect cyan" style="left:29.0196%; top:77.5%; width:43.0980%; height:11.6060%;"></span>
               </div>
             </div>
             <div class="column is-5-desktop">
               <span class="mode-badge">Prompt type: bbox_target</span>
               <h3 class="example-title">Predict normalized evidence boxes first</h3>
               <p class="example-query">Locate the region or regions needed to answer the question. Return only JSON grouped by page.</p>
-              <pre class="code-panel compact"><code>[[[110.196078, 675.151515,
-   741.176471, 891.212121]]]</code></pre>
+              <pre class="code-panel compact"><code>[[[218, 780, 750, 920]]]</code></pre>
               <p class="example-meta"><strong>Evaluation:</strong> mean IoU and IoU@0.3 / 0.5 / 0.7</p>
             </div>
           </div>
@@ -452,14 +451,14 @@
           <div class="columns is-variable is-5 is-vcentered">
             <div class="column is-7-desktop">
               <div class="image-frame">
-                <img src="./static/images/sample-pred-crop-figure.png" alt="Predicted bbox crop example">
+                <img src="./static/images/sample-crop-output.png" alt="Predicted bbox crop example">
               </div>
             </div>
             <div class="column is-5-desktop">
               <span class="mode-badge">image_mode: pred_bbox_crop</span>
               <h3 class="example-title">Reconstruct answering from predicted evidence</h3>
               <p class="example-query">Use model-predicted boxes to crop the evidence region and then answer from the recovered region.</p>
-              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
+              <p class="example-answer"><strong>Answer:</strong> "D receives two arrows, from C and E.</p>
               <p class="example-meta"><strong>Use case:</strong> decoupled localization and reasoning pipelines</p>
             </div>
           </div>
@@ -470,7 +469,7 @@
         <article class="sample-card">
           <div class="bbox-figure small">
             <img src="./static/images/sample-page-table.png" alt="Table example for rational entry">
-            <span class="bbox-rect coral" style="left:37.9216%; top:46.6667%; width:22.6275%; height:17.3939%;"></span>
+            <span class="bbox-rect coral" style="left:9.9216%; top:43.6667%; width:48.6275%; height:21.3939%;"></span>
           </div>
           <div class="sample-content">
             <span class="sample-chip">Table / SPSR</span>
@@ -482,14 +481,15 @@
 
         <article class="sample-card">
           <div class="bbox-figure small">
-            <img src="./static/images/sample-page-table.png" alt="Table example for human focus">
-            <span class="bbox-rect moss" style="left:10.7647%; top:66.6061%; width:77.1765%; height:18.3030%;"></span>
+            <img src="./static/images/sample-page-spmr.png" alt="SPMR example with image and text evidence">
+            <span class="bbox-rect moss" style="left:25.9804%; top:0%; width:49.0196%; height:45.7576%;"></span>
+            <span class="bbox-rect gold" style="left:11.4902%; top:49.3333%; width:75.4118%; height:15.2424%;"></span>
           </div>
           <div class="sample-content">
-            <span class="sample-chip">Table / SPMR</span>
-            <p class="sample-query">For rows with focus "human", list each area and its first-listed topic in table order.</p>
-            <p class="sample-answer"><strong>Answer:</strong> design - ontologies; value - ethics</p>
-            <p class="sample-meta">Page [26] · bbox [[[287, 2025, 2263, 2527]]]</p>
+            <span class="sample-chip">Image + Text / SPMR</span>
+            <p class="sample-query">Using the axis descriptions and the wheel diagram, which segment labels mark the ends of the vertical "how vs why" axis and the horizontal "supporting practices" axis?</p>
+            <p class="sample-answer"><strong>Answer:</strong> Vertical: Value and Analytics; Horizontal: Systems and Design.</p>
+            <p class="sample-meta">Page [11] · bbox [[[637, 302, 1887, 1614], [293, 1661, 2216, 1999]]]</p>
           </div>
         </article>
 
