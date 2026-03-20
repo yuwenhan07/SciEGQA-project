@@ -115,11 +115,11 @@
             <div class="hero-stats">
               <div class="metric-card">
                 <p class="metric-value">1,623</p>
-                <p class="metric-label">Benchmark QA pairs</p>
+                <p class="metric-label">Benchmark #QA</p>
               </div>
               <div class="metric-card">
                 <p class="metric-value">30,780</p>
-                <p class="metric-label">Training Set QA pairs</p>
+                <p class="metric-label">Training Set #QA</p>
               </div>
               <div class="metric-card">
                 <p class="metric-value">8</p>
@@ -269,59 +269,84 @@
 
   <section id="construction" class="section section-shell">
     <div class="container is-max-widescreen">
-      <div class="columns is-variable is-6">
-        <div class="column is-7-desktop">
-          <div class="visual-panel large-panel">
-            <img src="./static/images/data-construction.png" alt="SciEGQA construction pipeline">
-            <p class="visual-caption">
-              The project combines a manual benchmark annotation pipeline with an automatic training-set construction
-              pipeline built from PDF rendering, segmentation, filtering, multimodal judging, and QA generation.
-            </p>
-          </div>
+      <p class="section-kicker">Construction</p>
+      <h2 class="title is-2 section-title">From PDF pages to grounded QA</h2>
+
+      <div class="construction-grid">
+        <div class="visual-panel large-panel construction-panel">
+          <img src="./static/images/data-construction.png" alt="SciEGQA construction pipeline">
+          <p class="visual-caption">
+            The SciEGQA dataset consists of a fine-grained benchmark and a large-scale automatically constructed training set.
+          </p>
         </div>
 
-        <div class="column is-5-desktop">
-          <p class="section-kicker">Construction</p>
-          <h2 class="title is-2 section-title">From PDF pages to grounded QA</h2>
-          <div class="timeline-card">
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
+        <article class="pipeline-card benchmark">
+          <h3 class="pipeline-title">Fine-grained Benchmark</h3>
+          <div class="pipeline-steps">
+            <div class="pipeline-step">
+              <span class="step-index">01</span>
               <div>
-                <h3>Benchmark pipeline</h3>
-                <p>12 annotators and 24 domain experts manually mark semantically complete text, figure, and table regions.</p>
+                <h4>Region Annotation</h4>
               </div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
+            <div class="pipeline-step">
+              <span class="step-index">02</span>
               <div>
-                <h3>Cross-annotation control</h3>
-                <p>Each paper is annotated independently, and low-IoU disagreements are reviewed to stabilize evidence quality.</p>
+                <h4>Cross Validation</h4>
               </div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
+            <div class="pipeline-step">
+              <span class="step-index">03</span>
               <div>
-                <h3>Automated training pipeline</h3>
-                <p>PDFs are rendered at 300 dpi, segmented with SAM-based region proposals, filtered, grouped, judged, and converted into QA pairs.</p>
+                <h4>Expert QA Design</h4>
               </div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
+            <div class="pipeline-step">
+              <span class="step-index">04</span>
               <div>
-                <h3>Repository support</h3>
-                <p>Local generation, API generation, bbox IoU, and answer correctness evaluation are already wired into the codebase.</p>
+                <h4>Quality Assurance</h4>
               </div>
             </div>
           </div>
-        </div>
+        </article>
+
+        <article class="pipeline-card training">
+          <h3 class="pipeline-title">Large-scale Training set</h3>
+          <div class="pipeline-steps">
+            <div class="pipeline-step">
+              <span class="step-index">01</span>
+              <div>
+                <h4>Regions Segment</h4>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-index">02</span>
+              <div>
+                <h4>Regions Filtering</h4>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-index">03</span>
+              <div>
+                <h4>QA Generation</h4>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-index">04</span>
+              <div>
+                <h4>Answer Verification</h4>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section section-shell section-accent">
     <div class="container is-max-widescreen">
-      <p class="section-kicker">Task Design</p>
-      <h2 class="title is-2 section-title">Three reasoning regimes</h2>
+      <p class="section-kicker">Examples</p>
+      <h2 class="title is-2 section-title">Three types of questions</h2>
 
       <div class="task-grid">
         <article class="task-card">
@@ -355,7 +380,7 @@
         <article class="task-card">
           <h3>MPMR</h3>
           <p class="task-name">Multi Pages Multi Regions</p>
-          <p class="task-copy">Cross-page evidence integration over multiple regions, with the highest reasoning complexity.</p>
+          <p class="task-copy">Cross-page evidence integration over multiple regions, the highest complexity.</p>
           <div class="ratio-block">
             <div class="ratio-label"><span>Benchmark</span><span>19.59%</span></div>
             <div class="ratio-bar"><span style="width:19.59%"></span></div>
@@ -363,95 +388,6 @@
           <div class="ratio-block">
             <div class="ratio-label"><span>Training</span><span>37.69%</span></div>
             <div class="ratio-bar training"><span style="width:37.69%"></span></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="examples" class="section section-shell">
-    <div class="container is-max-widescreen">
-      <p class="section-kicker">Examples</p>
-      <h2 class="title is-2 section-title">Four dataset views built from the same grounded supervision</h2>
-
-      <div class="tab-bar" role="tablist" aria-label="Dataset views">
-        <button class="tab-button is-active" data-tab="page-view" role="tab" aria-selected="true">Page QA</button>
-        <button class="tab-button" data-tab="crop-view" role="tab" aria-selected="false">Crop QA</button>
-        <button class="tab-button" data-tab="bbox-view" role="tab" aria-selected="false">BBox Prediction</button>
-        <button class="tab-button" data-tab="pred-crop-view" role="tab" aria-selected="false">Pred-BBox Crop</button>
-      </div>
-
-      <div class="tab-panels">
-        <article class="example-panel is-active" id="page-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
-              <div class="bbox-figure">
-                <img src="./static/images/sample-page-figure.png" alt="Page-level SciEGQA example">
-                <span class="bbox-rect gold" style="left:11.0196%; top:67.5152%; width:63.0980%; height:21.6060%;"></span>
-              </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">image_mode: page</span>
-              <h3 class="example-title">Answer directly from the original page</h3>
-              <p class="example-query">In the figure, which letter uniquely receives two arrows, and from which letters do they come?</p>
-              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
-              <p class="example-meta"><strong>Evidence page:</strong> [4]</p>
-              <p class="example-meta"><strong>Region type:</strong> image</p>
-              <p class="example-meta"><strong>BBox:</strong> [[[281, 2228, 1890, 2941]]]</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="example-panel" id="crop-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
-              <div class="image-frame">
-                <img src="./static/images/sample-crop-figure.png" alt="Crop-level SciEGQA example">
-              </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">image_mode: crop</span>
-              <h3 class="example-title">Crop the semantic region before answer generation</h3>
-              <p class="example-query">The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
-              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
-              <p class="example-meta"><strong>Use case:</strong> region-focused QA or crop-only supervision</p>
-              <p class="example-meta"><strong>Compatible with:</strong> ShareGPT-style multimodal training data</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="example-panel" id="bbox-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
-              <div class="bbox-figure">
-                <img src="./static/images/sample-page-figure.png" alt="BBox prediction example">
-                <span class="bbox-rect cyan" style="left:29.0196%; top:77.5%; width:43.0980%; height:11.6060%;"></span>
-              </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">Prompt type: bbox_target</span>
-              <h3 class="example-title">Predict normalized evidence boxes first</h3>
-              <p class="example-query">Locate the region or regions needed to answer the question. Return only JSON grouped by page.</p>
-              <pre class="code-panel compact"><code>[[[218, 780, 750, 920]]]</code></pre>
-              <p class="example-meta"><strong>Evaluation:</strong> mean IoU and IoU@0.3 / 0.5 / 0.7</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="example-panel" id="pred-crop-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
-              <div class="image-frame">
-                <img src="./static/images/sample-crop-output.png" alt="Predicted bbox crop example">
-              </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">image_mode: pred_bbox_crop</span>
-              <h3 class="example-title">Reconstruct answering from predicted evidence</h3>
-              <p class="example-query">Use model-predicted boxes to crop the evidence region and then answer from the recovered region.</p>
-              <p class="example-answer"><strong>Answer:</strong> "D receives two arrows, from C and E.</p>
-              <p class="example-meta"><strong>Use case:</strong> decoupled localization and reasoning pipelines</p>
-            </div>
           </div>
         </article>
       </div>
@@ -468,7 +404,7 @@
             <p class="sample-answer"><strong>Answer:</strong> machine</p>
             <p class="sample-meta"><strong>Evidence Page:</strong> [26]</p>
             <p class="sample-meta"><strong>Evidence Regions:</strong> [[[305, 1512, 1520, 2005]]]</p>
-            <p class="sample-meta"><strong>Evidence category:</strong> [Table]</p>
+            <p class="sample-meta"><strong>Evidence Categories:</strong> [Table]</p>
           </div>
         </article>
 
@@ -482,9 +418,9 @@
             <span class="sample-chip">Single Page Multi Regions</span>
             <p class="sample-query">Using the axis descriptions and the wheel diagram, which segment labels mark the ends of the vertical "how vs why" axis and the horizontal "supporting practices" axis?</p>
             <p class="sample-answer"><strong>Answer:</strong> Vertical: Value and Analytics; Horizontal: Systems and Design.</p>
-            <p class="sample-meta"><strong>Evidence Page:</strong> [11]</p>
+            <p class="sample-meta"><strong>Evidence Pages:</strong> [11]</p>
             <p class="sample-meta"><strong>Evidence Regions:</strong> [[[637, 302, 1887, 1614], [293, 1661, 2216, 1999]]]</p>
-            <p class="sample-meta"><strong>Evidence category:</strong> [Image, Text]</p>
+            <p class="sample-meta"><strong>Evidence Categories:</strong> [Image, Text]</p>
           </div>
         </article>
 
@@ -505,12 +441,125 @@
             <p class="sample-answer"><strong>Answer:</strong> III'; clean, prepare, explore</p>
             <p class="sample-meta"><strong>Evidence Page:</strong> [9, 5]</p>
             <p class="sample-meta"><strong>Evidence Regions:</strong> [[[719, 1244, 1796, 1770]], [[593, 783, 1943, 1415]]]</p>
-            <p class="sample-meta"><strong>Evidence category:</strong> [Table, Image]</p>
+            <p class="sample-meta"><strong>Evidence Category:</strong> [Table, Image]</p>
           </div>
         </article>
       </div>
     </div>
   </section>
+
+  <section id="examples" class="section section-shell">
+    <div class="container is-max-widescreen">
+      <p class="section-kicker">Task</p>
+      <h2 class="title is-2 section-title">Definitions of Five Evaluation Tasks</h2>
+
+      <div class="tab-bar" role="tablist" aria-label="Dataset views">
+        <button class="tab-button is-active" data-tab="doc-view" role="tab" aria-selected="true">Doc QA</button>
+        <button class="tab-button" data-tab="page-view" role="tab" aria-selected="false">Page QA</button>
+        <button class="tab-button" data-tab="crop-view" role="tab" aria-selected="false">Crop QA</button>
+        <button class="tab-button" data-tab="bbox-view" role="tab" aria-selected="false">BBox Prediction</button>
+        <button class="tab-button" data-tab="pred-crop-view" role="tab" aria-selected="false">Pred-BBox Crop</button>
+      </div>
+
+      <div class="tab-panels">
+        <article class="example-panel is-active" id="doc-view">
+          <div class="columns is-variable is-5 is-vcentered">
+            <div class="column is-7-desktop">
+              <div class="image-frame doc-stack">
+                <img class="doc-sheet doc-sheet-back" src="./static/images/sample-page-table.png" alt="Back page in document stack">
+                <img class="doc-sheet doc-sheet-mid" src="./static/images/sample-page-spmr.png" alt="Middle page in document stack">
+                <img class="doc-sheet doc-sheet-front" src="./static/images/sample-page-figure.png" alt="Front page in document stack">
+                <span class="doc-stack-label">Whole-document PNG stack</span>
+              </div>
+            </div>
+            <div class="column is-5-desktop">
+              <span class="mode-badge">image_mode: document</span>
+              <h3 class="example-title">Answer from the full document context</h3>
+              <p class="example-query"><strong>Question:</strong> The model receives a stacked whole-document PNG representation instead of a single page or cropped evidence region.</p>
+              <p class="example-answer"><strong>Input:</strong> All document pages rendered as full-page images.</p>
+              <p class="example-meta"><strong>Use Case:</strong> End-to-end document QA before page selection or region grounding.</p>
+              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="example-panel" id="page-view">
+          <div class="columns is-variable is-5 is-vcentered">
+            <div class="column is-7-desktop">
+              <div class="bbox-figure">
+                <img src="./static/images/sample-page-figure.png" alt="Page-level SciEGQA example">
+                <span class="bbox-rect gold" style="left:11.0196%; top:67.5152%; width:63.0980%; height:21.6060%;"></span>
+              </div>
+            </div>
+            <div class="column is-5-desktop">
+              <span class="mode-badge">image_mode: page</span>
+              <h3 class="example-title">Answer directly from the original page</h3>
+              <p class="example-query"><strong>Question:</strong>In the figure, which letter uniquely receives two arrows, and from which letters do they come?</p>
+              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
+              <p class="example-meta"><strong>Predicted Answer:</strong> D receives two arrows, from C and E. </p>
+              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="example-panel" id="crop-view">
+          <div class="columns is-variable is-5 is-vcentered">
+            <div class="column is-7-desktop">
+              <div class="image-frame">
+                <img src="./static/images/sample-crop-figure.png" alt="Crop-level SciEGQA example">
+              </div>
+            </div>
+            <div class="column is-5-desktop">
+              <span class="mode-badge">image_mode: crop</span>
+              <h3 class="example-title">Answer from the cropped region</h3>
+              <p class="example-query"><strong>Question:</strong>The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
+              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
+              <p class="example-meta"><strong>Predicted Answer:</strong> D, from C and E</p>
+              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="example-panel" id="bbox-view">
+          <div class="columns is-variable is-5 is-vcentered">
+            <div class="column is-7-desktop">
+              <div class="bbox-figure">
+                <img src="./static/images/sample-page-figure.png" alt="BBox prediction example">
+                <span class="bbox-rect cyan" style="left:29.0196%; top:77.5%; width:43.0980%; height:11.6060%;"></span>
+              </div>
+            </div>
+            <div class="column is-5-desktop">
+              <span class="mode-badge">Prompt type: bbox_target</span>
+              <h3 class="example-title">Predict normalized evidence boxes</h3>
+              <p class="example-query"><strong>Question:</strong> Locate the region or regions needed to answer the question. Return only JSON grouped by page. The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
+              <p class="example-answer"><strong>Lable:</strong>[[[110,675,741,891]]]</p>
+              <p class="example-answer"><strong>Predicted Answer:</strong>[[[218, 780, 750, 920]]]</p>
+              <p class="example-meta"><strong>Evaluation Metrices:</strong> Avg. IoU and IoU@0.3 / 0.5 / 0.7</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="example-panel" id="pred-crop-view">
+          <div class="columns is-variable is-5 is-vcentered">
+            <div class="column is-7-desktop">
+              <div class="image-frame">
+                <img src="./static/images/sample-crop-output.png" alt="Predicted bbox crop example">
+              </div>
+            </div>
+            <div class="column is-5-desktop">
+              <span class="mode-badge">image_mode: pred_bbox_crop</span>
+              <h3 class="example-title">Answer from cropped regions from predicted evidence boxes </h3>
+              <p class="example-query"><strong>Question:</strong>The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
+              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
+              <p class="example-answer"><strong>Predicted Answer:</strong> D receives two arrows, from C and E.</p>
+              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
+            </div>
+          </div>
+        </article>
+      </div>
+  </section>
+
+  
 
   <section id="stats" class="section section-shell section-accent">
     <div class="container is-max-widescreen">
