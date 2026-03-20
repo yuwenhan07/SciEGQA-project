@@ -494,13 +494,21 @@
         </article>
 
         <article class="sample-card">
-          <div class="image-frame small">
-            <img src="./static/images/sample-crop-table-rational.png" alt="Crop example for table evidence">
+          <div class="image-pair sample-pair">
+            <div class="bbox-figure small">
+              <img src="./static/images/sample-page-mpmr-table.png" alt="MPMR table evidence on page 9">
+              <span class="bbox-rect coral" style="left:28.1961%; top:37.6970%; width:42.2353%; height:15.9394%;"></span>
+            </div>
+            <div class="bbox-figure small">
+              <img src="./static/images/sample-page-mpmr-figure.png" alt="MPMR figure evidence on page 5">
+              <span class="bbox-rect cyan" style="left:23.2549%; top:23.7273%; width:52.9412%; height:19.1515%;"></span>
+            </div>
           </div>
           <div class="sample-content">
-            <span class="sample-chip">Crop View</span>
-            <p class="sample-query">Region-only supervision isolates the evidence and removes irrelevant page context.</p>
-            <p class="sample-meta">Useful for training and ablations on evidence-only answering.</p>
+            <span class="sample-chip">Table + Image / MPMR</span>
+            <p class="sample-query">In Table 1, the Machine-Concrete quadrant shows which primed numeral, and in Figure 2 what three left-column actions correspond to that numeral?</p>
+            <p class="sample-answer"><strong>Answer:</strong> III'; clean, prepare, explore</p>
+            <p class="sample-meta">Pages [9, 5] · bbox [[[719, 1244, 1796, 1770]], [[593, 783, 1943, 1415]]]</p>
           </div>
         </article>
       </div>
