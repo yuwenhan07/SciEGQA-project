@@ -730,6 +730,127 @@ img {
   display: block;
 }
 
+.task-granularity-grid,
+.task-visual-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.task-granularity-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.4rem;
+}
+
+.task-visual-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.task-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 0.35rem;
+}
+
+.task-metric {
+  margin: 0;
+}
+
+.task-subcard {
+  padding: 1.2rem;
+}
+
+#task .task-subcard .sample-chip {
+  border-radius: 0.95rem;
+  margin-top: -0.35rem;
+  margin-bottom: 0.6rem;
+  padding: 0.42rem 0.85rem;
+}
+
+.task-subcard h4 {
+  margin: 1rem 0 0.5rem;
+  color: var(--ink);
+  font-size: 1.02rem;
+}
+
+.task-subcard p {
+  margin: 0;
+}
+
+.task-subcard .example-meta {
+  margin-top: 0.7rem;
+}
+
+.task-note-card {
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 1rem 1.05rem;
+  box-shadow: 0 12px 28px rgba(17, 37, 40, 0.08);
+}
+
+.task-note-card + .task-note-card {
+  margin-top: 1rem;
+}
+
+.task-note-card-accent {
+  background: linear-gradient(180deg, rgba(15, 123, 123, 0.09), rgba(255, 255, 255, 0.94));
+}
+
+.task-note-label {
+  margin: 0 0 0.8rem;
+  color: var(--primary-deep);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#task .image-bottom-caption {
+  position: static;
+  transform: none;
+  margin: 0.75rem auto 0.95rem;
+  width: 72%;
+  min-width: 10.5rem;
+  max-width: calc(100% - 1.4rem);
+  padding: 0.34rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--ink);
+  font-size: 0.76rem;
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(17, 37, 40, 0.08);
+}
+
+#task .image-bottom-caption strong {
+  font-weight: 700;
+}
+
+#task .crop-preview-figure {
+  justify-self: start;
+  align-self: start;
+  width: auto;
+  max-width: 100%;
+}
+
+#task .crop-preview-figure img {
+  width: auto;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  #task .task-visual-column {
+    flex: none;
+    width: 54%;
+  }
+
+  #task .task-note-column {
+    flex: none;
+    width: 46%;
+  }
+}
+
 .doc-stack {
   position: relative;
   height: 23.6rem;
@@ -1094,7 +1215,10 @@ img {
   .resource-grid,
   .paper-points,
   .capability-grid,
-  .construction-grid {
+  .construction-grid,
+  .task-granularity-grid,
+  .task-visual-grid,
+  .task-metric-grid {
     grid-template-columns: 1fr;
   }
 

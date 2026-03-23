@@ -59,7 +59,7 @@
               <span class="author-sep">·</span>
               <span class="author-block">Zhaoxi Zhang</span>
               <span class="author-sep">·</span>
-              <span class="author-block">Wang Chen</a></span>
+              <span class="author-block">Wang Chen</span>
               <span class="author-sep">·</span>
               <span class="author-block">Guanqiang Qi</span>
               <span class="author-sep">·</span>
@@ -451,111 +451,115 @@
   <section id="task" class="section section-shell">
     <div class="container is-max-widescreen">
       <p class="section-kicker">Task</p>
-      <h2 class="title is-2 section-title">Definitions of Five Evaluation Tasks</h2>
+      <h2 class="title is-2 section-title">Definitions of Two Evaluation Tasks</h2>
+      <p class="section-copy">
+        We design <strong>two evaluation tasks</strong> on the SciEGQA benchmark and perform
+        <strong>zero-shot inference</strong> to systematically evaluate a diverse set of
+        Vision-Language Models (VLMs).
+      </p>
 
       <div class="tab-bar" role="tablist" aria-label="Dataset views">
-        <button class="tab-button is-active" data-tab="doc-view" role="tab" aria-selected="true">Doc QA</button>
-        <button class="tab-button" data-tab="page-view" role="tab" aria-selected="false">Page QA</button>
-        <button class="tab-button" data-tab="crop-view" role="tab" aria-selected="false">Crop QA</button>
-        <button class="tab-button" data-tab="bbox-view" role="tab" aria-selected="false">BBox Prediction</button>
-        <button class="tab-button" data-tab="pred-crop-view" role="tab" aria-selected="false">Pred-BBox Crop</button>
+        <button class="tab-button is-active" data-tab="granularity-view" role="tab" aria-selected="true">Task 1: Granularity QA</button>
+        <button class="tab-button" data-tab="grounding-view" role="tab" aria-selected="false">Task 2: Grounding-Crop-then-Answer</button>
       </div>
 
       <div class="tab-panels">
-        <article class="example-panel is-active" id="doc-view">
+        <article class="example-panel is-active" id="granularity-view">
+          <!-- <span class="mode-badge">Task 1</span> -->
+          <h3 class="example-title">QA under Different Evidence Granularities</h3>
+          <p class="example-query">
+            We evaluate model performance under three levels of input granularity:
+            the <strong>entire document</strong>, the <strong>evidence page(s)</strong>, and the
+            <strong>cropped evidence region(s)</strong>. By comparing answer accuracy across these
+            settings, we analyze how evidence granularity influences the question answering
+            capability of VLMs.
+          </p>
 
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
+          <div class="task-granularity-grid">
+            <article class="split-card task-subcard">
+              <span class="sample-chip">Input 1</span>
               <div class="bbox-figure">
-                <img src="./static/images/sample-cover.png" alt="Page-level SciEGQA example">
-                <p class="image-bottom-caption"><strong>The whole document</strong></p>
+                <img src="./static/images/sample-cover.png" alt="Entire document input example">
+                <p class="image-bottom-caption"><strong>Entire document</strong></p>
               </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">image_mode: document</span>
-              <h3 class="example-title">Answer from the full document images</h3>
-              <p class="example-query"><strong>Question:</strong> In the figure, which letter uniquely receives two arrows, and from which letters do they come?</p>
-              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
-              <p class="example-meta"><strong>Predicted Answer:</strong> Letter D receives two arrows, one from letter C and one from letter E. </p>
-              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
-            </div>
-          </div>
-        </article>
+              <h4>Whole document images</h4>
+              <p>All pages of the source paper are provided to the model for direct answer generation.</p>
+              <!-- <p class="example-meta"><strong>Metric:</strong> Answer accuracy</p> -->
+            </article>
 
-        <article class="example-panel" id="page-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
+            <article class="split-card task-subcard">
+              <span class="sample-chip">Input 2</span>
               <div class="bbox-figure">
-                <img src="./static/images/sample-page-figure.png" alt="Page-level SciEGQA example">
-                <span class="bbox-rect gold" style="left:11.0196%; top:67.5152%; width:63.0980%; height:21.6060%;"></span>
+                <img src="./static/images/sample-page-figure.png" alt="Evidence page input example">
+                <span class="bbox-rect gold" style="left:11.0196%; top:58.5152%; width:63.0980%; height:21.6060%;"></span>
+                <p class="image-bottom-caption"><strong>Evidence page(s)</strong></p>
               </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">image_mode: page</span>
-              <h3 class="example-title">Answer directly from the original page</h3>
-              <p class="example-query"><strong>Question:</strong> In the figure, which letter uniquely receives two arrows, and from which letters do they come?</p>
-              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
-              <p class="example-meta"><strong>Predicted Answer:</strong> D receives two arrows, from C and E. </p>
-              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
-            </div>
-          </div>
-        </article>
+              <h4>Answer from evidence pages</h4>
+              <p>Only the page or pages that support the answer evidence are given as input.</p>
+              <!-- <p class="example-meta"><strong>Metric:</strong> Answer accuracy</p> -->
+            </article>
 
-        <article class="example-panel" id="crop-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
-              <div class="image-frame">
-                <img src="./static/images/sample-crop-figure.png" alt="Crop-level SciEGQA example">
-              </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">image_mode: crop</span>
-              <h3 class="example-title">Answer from the cropped region</h3>
-              <p class="example-query"><strong>Question:</strong> The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
-              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
-              <p class="example-meta"><strong>Predicted Answer:</strong> D, from C and E</p>
-              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="example-panel" id="bbox-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
+            <article class="split-card task-subcard">
+              <span class="sample-chip">Input 3</span>
               <div class="bbox-figure">
-                <img src="./static/images/sample-page-figure.png" alt="BBox prediction example">
-                <span class="bbox-rect cyan" style="left:29.0196%; top:77.5%; width:43.0980%; height:11.6060%;"></span>
+                <img src="./static/images/sample-crop-figure.png" alt="Cropped evidence region input example">
+                <p class="image-bottom-caption"><strong>Cropped evidence region(s)</strong></p>
               </div>
-            </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">Prompt type: bbox_target</span>
-              <h3 class="example-title">Predict normalized evidence boxes</h3>
-              <p class="example-query"><strong>Question:</strong> Locate the region or regions needed to answer the question. Return only JSON grouped by page. The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
-              <p class="example-answer"><strong>Lable:</strong>[[[110,675,741,891]]]</p>
-              <p class="example-answer"><strong>Predicted Answer:</strong>[[[218, 780, 750, 920]]]</p>
-              <p class="example-meta"><strong>Evaluation Metrics:</strong> Avg. IoU and IoU@0.3 / 0.5 / 0.7</p>
-            </div>
+              <h4>Answer from evidence regions</h4>
+              <p>The model receives only the cropped evidence region or regions annotated for the QA pair.</p>
+              <!-- <p class="example-meta"><strong>Metric:</strong> Answer accuracy</p> -->
+            </article>
           </div>
         </article>
 
-        <article class="example-panel" id="pred-crop-view">
-          <div class="columns is-variable is-5 is-vcentered">
-            <div class="column is-7-desktop">
-              <div class="image-frame">
-                <img src="./static/images/sample-crop-output.png" alt="Predicted bbox crop example">
+        <article class="example-panel" id="grounding-view">
+          <!-- <span class="mode-badge">Task 2</span> -->
+          <h3 class="example-title">Grounding-Crop-then-Answer</h3>
+          <p class="example-query">
+            We evaluate the visual grounding capability of VLMs through a
+            <strong>grounding-crop-then-answer</strong> pipeline. Given the
+            <strong>evidence page(s)</strong> as input, the model predicts a series of bounding
+            boxes that localize the region relevant to answering the question. The predicted box
+            coordinates are normalized to <code>[0,1000]</code>.
+          </p>
+
+          <div class="columns is-variable is-5">
+            <div class="column is-7-desktop task-visual-column">
+              <div class="task-metric-grid">
+                <p class="example-meta task-metric"><strong>Metric:</strong> IoU</p>
+                <p class="example-meta task-metric"><strong>Metric:</strong> Answer accuracy</p>
+              </div>
+              <div class="task-visual-grid">
+                <div class="bbox-figure">
+                  <img src="./static/images/sample-page-figure.png" alt="Grounding on evidence pages">
+                  <span class="bbox-rect cyan" style="left:29.0196%; top:67.5%; width:43.0980%; height:11.6060%;"></span>
+                  <p class="image-bottom-caption"><strong>Predict bounding boxes</strong></p>
+                </div>
+                <div class="bbox-figure crop-preview-figure">
+                  <img src="./static/images/sample-crop-output.png" alt="Answering from predicted crop regions">
+                  <p class="image-bottom-caption"><strong>Answer by crop predicted region(s)</strong></p>
+                </div>
               </div>
             </div>
-            <div class="column is-5-desktop">
-              <span class="mode-badge">image_mode: pred_bbox_crop</span>
-              <h3 class="example-title">Answer from cropped regions from predicted evidence boxes </h3>
-              <p class="example-query"><strong>Question:</strong> The same QA pair is converted into a focused crop so the model can reason on the supporting region alone.</p>
-              <p class="example-answer"><strong>Answer:</strong> D; from C and E.</p>
-              <p class="example-answer"><strong>Predicted Answer:</strong> D receives two arrows, from C and E.</p>
-              <p class="example-meta"><strong>Evaluation Metrics:</strong> Accuracy</p>
+
+            <div class="column is-5-desktop task-note-column">
+              <div class="task-note-card">
+                <p class="task-note-label">Evaluation pipeline</p>
+                <ul class="compact-list">
+                  <li>Input the evidence page(s) that contain the answer.</li>
+                  <li>Predict one or more answer-relevant bounding boxes.</li>
+                  <li>Crop the page according to the predicted boxes.</li>
+                  <li>Feed the cropped region into a fixed <strong>Qwen3.5-27B</strong> model to generate the final answer.</li>
+                  <li>Use the resulting answer accuracy to assess grounding quality while controlling for reasoning differences across models.</li>
+                </ul>
+              </div>
+
+             
             </div>
           </div>
         </article>
       </div>
+    </div>
   </section>
 
   
