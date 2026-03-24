@@ -36,8 +36,8 @@
           <a class="navbar-item" href="#overview">Overview</a>
           <a class="navbar-item" href="#construction">Construction</a>
           <a class="navbar-item" href="#examples">Examples</a>
-          <a class="navbar-item" href="#task">Tasks</a>
           <a class="navbar-item" href="#stats">Statistics</a>
+          <a class="navbar-item" href="#task">Tasks</a>
           <a class="navbar-item" href="#paper">Paper</a>
           <a class="navbar-item" href="#downloads">Downloads</a>
         </div>
@@ -448,6 +448,61 @@
     </div>
   </section>
 
+  <section id="stats" class="section section-shell section-accent">
+    <div class="container is-max-widescreen">
+      <p class="section-kicker">Statistics</p>
+      <h2 class="title is-2 section-title">Coverage, Diversity, and Evaluation signals</h2>
+
+      <div class="stats-card stats-card-wide">
+        <h3>arXiv category distribution</h3>
+        <p class="stats-intro">Benchmark papers are evenly sampled with 10 papers per category. The training set scales unevenly across eight domains.</p>
+
+        <div class="bar-group">
+          <div class="bar-row">
+            <div class="bar-meta"><span>q-fin</span><span>785 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:100%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-meta"><span>q-bio</span><span>670 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:85.35%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-meta"><span>econ</span><span>576 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:73.38%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-meta"><span>cs</span><span>410 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:52.23%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-meta"><span>stat</span><span>353 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:44.97%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-meta"><span>physics</span><span>337 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:42.93%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-meta"><span>eess</span><span>288 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:36.69%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-meta"><span>math</span><span>252 train / 10 bench</span></div>
+            <div class="bar-track"><span style="width:32.10%"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-panel wide-panel">
+        <img src="./static/images/analysis.png" alt="SciEGQA statistical analysis">
+        <p class="visual-caption">
+          The paper reports dataset statistics over category-modality combinations, question and answer lengths, spatial
+          evidence locations, and evidence type distributions for both benchmark and training data.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section id="task" class="section section-shell">
     <div class="container is-max-widescreen">
       <p class="section-kicker">Task</p>
@@ -459,7 +514,7 @@
       </p>
 
       <div class="tab-bar" role="tablist" aria-label="Dataset views">
-        <button class="tab-button is-active" data-tab="granularity-view" role="tab" aria-selected="true">Task 1: Granularity QA</button>
+        <button class="tab-button is-active" data-tab="granularity-view" role="tab" aria-selected="true">Task 1: Evidence-Granularity-QA</button>
         <button class="tab-button" data-tab="grounding-view" role="tab" aria-selected="false">Task 2: Grounding-Crop-then-Answer</button>
       </div>
 
@@ -558,63 +613,6 @@
             </div>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  
-
-  <section id="stats" class="section section-shell section-accent">
-    <div class="container is-max-widescreen">
-      <p class="section-kicker">Statistics</p>
-      <h2 class="title is-2 section-title">Coverage, Diversity, and Evaluation signals</h2>
-
-      <div class="stats-card stats-card-wide">
-        <h3>arXiv category distribution</h3>
-        <p class="stats-intro">Benchmark papers are evenly sampled with 10 papers per category. The training set scales unevenly across eight domains.</p>
-
-        <div class="bar-group">
-          <div class="bar-row">
-            <div class="bar-meta"><span>q-fin</span><span>785 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:100%"></span></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta"><span>q-bio</span><span>670 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:85.35%"></span></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta"><span>econ</span><span>576 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:73.38%"></span></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta"><span>cs</span><span>410 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:52.23%"></span></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta"><span>stat</span><span>353 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:44.97%"></span></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta"><span>physics</span><span>337 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:42.93%"></span></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta"><span>eess</span><span>288 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:36.69%"></span></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta"><span>math</span><span>252 train / 10 bench</span></div>
-            <div class="bar-track"><span style="width:32.10%"></span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="visual-panel wide-panel">
-        <img src="./static/images/analysis.png" alt="SciEGQA statistical analysis">
-        <p class="visual-caption">
-          The paper reports dataset statistics over category-modality combinations, question and answer lengths, spatial
-          evidence locations, and evidence type distributions for both benchmark and training data.
-        </p>
       </div>
     </div>
   </section>
