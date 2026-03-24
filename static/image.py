@@ -1,6 +1,8 @@
 import os
 from PIL import Image, ImageOps
 
+Image.MAX_IMAGE_PIXELS = None
+
 def add_white_border_to_png(input_folder, output_folder, border_size=20):
     """
     给文件夹中的所有 PNG 图片添加白色边框
@@ -39,7 +41,7 @@ def add_white_border_to_png(input_folder, output_folder, border_size=20):
 
 
 if __name__ == "__main__":
-    input_folder = "images"   # 替换为你的输入文件夹路径
-    output_folder = "output_images" # 输出文件夹
+    input_folder = "tmp"   # 替换为你的输入文件夹路径
+    output_folder = "output_tmp" # 输出文件夹
 
-    add_white_border_to_png(input_folder, output_folder, border_size=20)
+    add_white_border_to_png(input_folder, output_folder, border_size=100)
