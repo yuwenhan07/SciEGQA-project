@@ -38,6 +38,7 @@
           <a class="navbar-item" href="#examples">Examples</a>
           <a class="navbar-item" href="#stats">Statistics</a>
           <a class="navbar-item" href="#task">Tasks</a>
+          <a class="navbar-item" href="#results">Main Results</a>
           <a class="navbar-item" href="#paper">Paper</a>
           <a class="navbar-item" href="#downloads">Downloads</a>
         </div>
@@ -612,6 +613,327 @@
              
             </div>
           </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="section section-shell section-accent">
+    <div class="container is-max-widescreen">
+      <p class="section-kicker">Main Results</p>
+      <h2 class="title is-2 section-title">Top-line benchmark performance</h2>
+      <p class="section-copy">
+        The tables below summarize the main benchmark numbers. Task 1 measures answer
+        accuracy under different evidence granularities, while Task 2 evaluates both grounding
+        quality and crop-then-answer performance.
+      </p>
+
+      <div class="results-summary-grid">
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 1 · Whole document</p>
+          <p class="results-name">Kimi-K2.5</p>
+          <p class="results-value">68.02%</p>
+          <p class="results-detail">Best answer accuracy with full-paper input.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 1 · Evidence page(s)</p>
+          <p class="results-name">GPT-5.2</p>
+          <p class="results-value">81.39%</p>
+          <p class="results-detail">Best answer accuracy when only evidence pages are given.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 1 · Evidence crop(s)</p>
+          <p class="results-name">GPT-5.2</p>
+          <p class="results-value">85.15%</p>
+          <p class="results-detail">Best answer accuracy on cropped evidence regions.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 2 · Valid output ratio</p>
+          <p class="results-name">GPT-5.2</p>
+          <p class="results-value">99.88%</p>
+          <p class="results-detail">Highest rate of valid grounding-box output.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 2 · Mean IoU</p>
+          <p class="results-name">Qwen3.5-397B-A17B</p>
+          <p class="results-value">38.89%</p>
+          <p class="results-detail">Best average overlap with gold evidence regions.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 2 · Final accuracy</p>
+          <p class="results-name">Qwen3.5-27B</p>
+          <p class="results-value">51.26%</p>
+          <p class="results-detail">Best crop-then-answer accuracy in the grounding pipeline.</p>
+        </article>
+      </div>
+
+      <div class="results-grid">
+        <article class="stats-card results-card">
+          <div class="results-card-header">
+            <div>
+              <p class="results-label">Task 1</p>
+              <h3>Evidence-Granularity-QA</h3>
+            </div>
+            <p class="results-subtitle">Metric: overall answer accuracy on benchmark QA pairs.</p>
+          </div>
+
+          <div class="results-table-shell">
+            <table class="table is-fullwidth results-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Whole document</th>
+                  <th>Evidence page(s)</th>
+                  <th>Evidence crop(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Qwen3-VL-8B</td>
+                  <td>9.30%</td>
+                  <td>60.51%</td>
+                  <td>65.87%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-32B</td>
+                  <td>16.14%</td>
+                  <td>73.14%</td>
+                  <td>75.54%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-235B-A22B</td>
+                  <td>40.30%</td>
+                  <td>70.49%</td>
+                  <td>75.42%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-27B</td>
+                  <td>42.95%</td>
+                  <td>69.69%</td>
+                  <td>77.02%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-122B-A10B</td>
+                  <td>37.58%</td>
+                  <td>68.95%</td>
+                  <td>73.01%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-397B-A17B</td>
+                  <td>36.23%</td>
+                  <td>68.08%</td>
+                  <td>73.75%</td>
+                </tr>
+                <tr>
+                  <td>InternVL3-38B</td>
+                  <td>10.23%</td>
+                  <td>48.18%</td>
+                  <td>64.14%</td>
+                </tr>
+                <tr>
+                  <td>Ernie-5</td>
+                  <td>38.51%</td>
+                  <td>77.39%</td>
+                  <td>81.89%</td>
+                </tr>
+                <tr>
+                  <td>Kimi-K2.5</td>
+                  <td class="results-best">68.02%</td>
+                  <td>79.98%</td>
+                  <td>81.21%</td>
+                </tr>
+                <tr>
+                  <td>Claude Sonnet 4.6</td>
+                  <td>43.99%</td>
+                  <td>68.45%</td>
+                  <td>74.31%</td>
+                </tr>
+                <tr>
+                  <td>GPT-5.2</td>
+                  <td>65.43%</td>
+                  <td class="results-best">81.39%</td>
+                  <td class="results-best">85.15%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="stats-card results-card">
+          <div class="results-card-header">
+            <div>
+              <p class="results-label">Task 2</p>
+              <h3>Grounding-Crop-then-Answer</h3>
+            </div>
+            <p class="results-subtitle">Metrics: valid grounding output, IoU, and final answer accuracy.</p>
+          </div>
+
+          <div class="results-table-shell">
+            <table class="table is-fullwidth results-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Valid output</th>
+                  <th>Valid ratio</th>
+                  <th>Mean IoU</th>
+                  <th>IoU@0.3</th>
+                  <th>IoU@0.5</th>
+                  <th>IoU@0.7</th>
+                  <th>Acc</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Qwen3-VL-8B</td>
+                  <td>1413</td>
+                  <td>87.06%</td>
+                  <td>21.43%</td>
+                  <td>24.77%</td>
+                  <td>12.14%</td>
+                  <td>7.27%</td>
+                  <td>32.04%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-32B</td>
+                  <td>1593</td>
+                  <td>98.15%</td>
+                  <td>31.53%</td>
+                  <td>44.55%</td>
+                  <td>18.55%</td>
+                  <td>11.95%</td>
+                  <td>46.46%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-235B-A22B</td>
+                  <td>1439</td>
+                  <td>88.66%</td>
+                  <td>25.22%</td>
+                  <td>33.52%</td>
+                  <td>10.72%</td>
+                  <td>4.87%</td>
+                  <td>38.63%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-27B</td>
+                  <td>1620</td>
+                  <td>99.82%</td>
+                  <td>36.04%</td>
+                  <td>47.50%</td>
+                  <td>29.39%</td>
+                  <td>19.90%</td>
+                  <td class="results-best">51.26%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-122B-A10B</td>
+                  <td>1501</td>
+                  <td>92.48%</td>
+                  <td>30.76%</td>
+                  <td>38.08%</td>
+                  <td>21.87%</td>
+                  <td>14.11%</td>
+                  <td>46.95%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-397B-A17B</td>
+                  <td>1615</td>
+                  <td>99.51%</td>
+                  <td class="results-best">38.89%</td>
+                  <td>52.19%</td>
+                  <td class="results-best">32.96%</td>
+                  <td class="results-best">20.64%</td>
+                  <td>50.15%</td>
+                </tr>
+                <tr>
+                  <td>InternVL3-38B</td>
+                  <td>1445</td>
+                  <td>89.03%</td>
+                  <td>5.23%</td>
+                  <td>3.39%</td>
+                  <td>0.62%</td>
+                  <td>0.12%</td>
+                  <td>5.05%</td>
+                </tr>
+                <tr>
+                  <td>Ernie-5</td>
+                  <td>891</td>
+                  <td>54.90%</td>
+                  <td>14.57%</td>
+                  <td>19.10%</td>
+                  <td>9.55%</td>
+                  <td>4.00%</td>
+                  <td>22.12%</td>
+                </tr>
+                <tr>
+                  <td>Kimi-K2.5</td>
+                  <td>1563</td>
+                  <td>96.30%</td>
+                  <td>7.17%</td>
+                  <td>7.16%</td>
+                  <td>5.49%</td>
+                  <td>2.23%</td>
+                  <td>7.46%</td>
+                </tr>
+                <tr>
+                  <td>Claude Sonnet 4.6</td>
+                  <td>1523</td>
+                  <td>93.84%</td>
+                  <td>15.93%</td>
+                  <td>17.25%</td>
+                  <td>4.81%</td>
+                  <td>0.68%</td>
+                  <td>19.29%</td>
+                </tr>
+                <tr>
+                  <td>GPT-5.2</td>
+                  <td>1621</td>
+                  <td class="results-best">99.88%</td>
+                  <td>31.63%</td>
+                  <td>49.11%</td>
+                  <td>18.55%</td>
+                  <td>4.81%</td>
+                  <td>41.22%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-8B-SFT</td>
+                  <td>1619</td>
+                  <td>99.75%</td>
+                  <td>38.66%</td>
+                  <td class="results-best">57.92%</td>
+                  <td>28.77%</td>
+                  <td>17.25%</td>
+                  <td>49.97%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+
+      <div class="results-analysis-head">
+        <p class="results-label">Analysis Figures</p>
+        <h3 class="results-analysis-title">What the raw result tables reveal</h3>
+      </div>
+
+      <div class="results-figure-grid">
+        <article class="visual-panel results-figure-card results-figure-wide">
+          <div class="results-task1-pair">
+            <div class="results-task1-panel">
+              <img src="./static/images/results-task1-granularity.png" alt="Task 1 accuracy comparison across evidence granularities">
+            </div>
+            <div class="results-task1-panel">
+              <img src="./static/images/results-task1-breakdown.png" alt="Task 1 average accuracy and question-type analysis">
+            </div>
+          </div>
+          <p class="visual-caption">
+            Task 1 overall accuracy improves as evidence becomes more focused, and the companion analysis shows that SPSR, SPMR, and MPMR form distinct difficulty bands rather than behaving like a single homogeneous QA set.
+          </p>
+        </article>
+
+        <article class="visual-panel results-figure-card results-figure-wide">
+          <img src="./static/images/results-task2-grounding.png" alt="Task 2 grounding quality and answer accuracy analysis">
+          <p class="visual-caption">
+            In Task 2, grounding quality and final answer accuracy are tightly coupled, while high-IoU localization remains substantially harder than coarse localization.
+          </p>
         </article>
       </div>
     </div>
