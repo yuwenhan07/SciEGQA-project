@@ -572,11 +572,12 @@
           <!-- <span class="mode-badge">Task 2</span> -->
           <h3 class="example-title">Grounding-Crop-then-Answer</h3>
           <p class="example-query">
-            We evaluate the visual grounding capability of VLMs through a
-            <strong>grounding-crop-then-answer</strong> pipeline. Given the
-            <strong>evidence page(s)</strong> as input, the model predicts a series of bounding
-            boxes that localize the region relevant to answering the question. The predicted box
-            coordinates are normalized to <code>[0,1000]</code>.
+            Given the <strong>evidence page(s)</strong> and the corresponding question, the model
+            predicts a set of <strong>bounding boxes</strong> that localize the regions relevant to
+            answering the question. Each box is represented as
+            <code>(x1, y1, x2, y2)</code>, with coordinates normalized to the page coordinate space
+            of <code>[0,1000]</code>.
+            
           </p>
 
           <div class="columns is-variable is-5">
@@ -602,11 +603,9 @@
               <div class="task-note-card">
                 <p class="task-note-label">Evaluation pipeline</p>
                 <ul class="compact-list">
-                  <li>Input the evidence page(s) that contain the answer.</li>
-                  <li>Predict one or more answer-relevant bounding boxes.</li>
-                  <li>Crop the page according to the predicted boxes.</li>
-                  <li>Feed the cropped region into a fixed <strong>Qwen3.5-27B</strong> model to generate the final answer.</li>
-                  <li>Use the resulting answer accuracy to assess grounding quality while controlling for reasoning differences across models.</li>
+                  <li><strong>1. Grounding:</strong> the grounding model predicts one or more answer-relevant bounding boxes.</li>
+                  <li><strong>2. Crop:</strong> crop the page image to obtain the corresponding predicted regions.</li>
+                  <li><strong>3. Answer:</strong> use <strong>Qwen3.5-27B</strong> as the fixed generation model to produce the final answer.</li>
                 </ul>
               </div>
 
