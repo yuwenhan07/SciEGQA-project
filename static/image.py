@@ -44,4 +44,4 @@ if __name__ == "__main__":
     input_folder = "tmp"   # 替换为你的输入文件夹路径
     output_folder = "output_tmp" # 输出文件夹
 
-    add_white_border_to_png(input_folder, output_folder, border_size=100)
+    add_white_border_to_png(input_folder, output_folder, border_size=30)
