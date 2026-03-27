@@ -515,13 +515,59 @@
       </p>
 
       <div class="tab-bar" role="tablist" aria-label="Dataset views">
-        <button class="tab-button is-active" data-tab="granularity-view" role="tab" aria-selected="true">Task 1: Evidence-Granularity-QA</button>
-        <button class="tab-button" data-tab="grounding-view" role="tab" aria-selected="false">Task 2: Grounding-Crop-then-Answer</button>
+        <button class="tab-button is-active" data-tab="grounding-view" role="tab" aria-selected="true">Task 1: Grounding-Crop-then-Answer</button>
+        <button class="tab-button" data-tab="granularity-view" role="tab" aria-selected="false">Task 2: Evidence-Granularity-QA</button>
       </div>
 
       <div class="tab-panels">
-        <article class="example-panel is-active" id="granularity-view">
+        <article class="example-panel is-active" id="grounding-view">
           <!-- <span class="mode-badge">Task 1</span> -->
+          <h3 class="example-title">Grounding-Crop-then-Answer</h3>
+          <p class="example-query">
+            Given the <strong>evidence page(s)</strong> and the corresponding question, the model
+            predicts a set of <strong>bounding boxes</strong> that localize the regions relevant to
+            answering the question. Each box is represented as
+            <code>(x1, y1, x2, y2)</code>, with coordinates normalized to the page coordinate space
+            of <code>[0,1000]</code>.
+            
+          </p>
+
+          <div class="columns is-variable is-5">
+            <div class="column is-7-desktop task-visual-column">
+              <div class="task-metric-grid">
+                <p class="example-meta task-metric"><strong>Metric:</strong> IoU</p>
+                <p class="example-meta task-metric"><strong>Metric:</strong> Answer accuracy</p>
+              </div>
+              <div class="task-visual-grid">
+                <div class="bbox-figure">
+                  <img src="./static/images/sample-page-figure.png" alt="Grounding on evidence pages">
+                  <span class="bbox-rect cyan" style="left:29.0196%; top:67.5%; width:43.0980%; height:11.6060%;"></span>
+                  <p class="image-bottom-caption"><strong>Predict bounding boxes</strong></p>
+                </div>
+                <div class="bbox-figure crop-preview-figure">
+                  <img src="./static/images/sample-crop-output.png" alt="Answering from predicted crop regions">
+                  <p class="image-bottom-caption"><strong>Answer by crop predicted region(s)</strong></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-5-desktop task-note-column">
+              <div class="task-note-card">
+                <p class="task-note-label">Evaluation pipeline</p>
+                <ul class="compact-list">
+                  <li><strong>1. Grounding:</strong> the grounding model predicts one or more answer-relevant bounding boxes.</li>
+                  <li><strong>2. Crop:</strong> crop the page image to obtain the corresponding predicted regions.</li>
+                  <li><strong>3. Answer:</strong> use <strong>Qwen3.5-27B</strong> as the fixed generation model to produce the final answer.</li>
+                </ul>
+              </div>
+
+             
+            </div>
+          </div>
+        </article>
+
+        <article class="example-panel" id="granularity-view">
+          <!-- <span class="mode-badge">Task 2</span> -->
           <h3 class="example-title">QA under Different Evidence Granularities</h3>
           <p class="example-query">
             We evaluate model performance under three levels of input granularity:
@@ -567,52 +613,6 @@
             </article>
           </div>
         </article>
-
-        <article class="example-panel" id="grounding-view">
-          <!-- <span class="mode-badge">Task 2</span> -->
-          <h3 class="example-title">Grounding-Crop-then-Answer</h3>
-          <p class="example-query">
-            Given the <strong>evidence page(s)</strong> and the corresponding question, the model
-            predicts a set of <strong>bounding boxes</strong> that localize the regions relevant to
-            answering the question. Each box is represented as
-            <code>(x1, y1, x2, y2)</code>, with coordinates normalized to the page coordinate space
-            of <code>[0,1000]</code>.
-            
-          </p>
-
-          <div class="columns is-variable is-5">
-            <div class="column is-7-desktop task-visual-column">
-              <div class="task-metric-grid">
-                <p class="example-meta task-metric"><strong>Metric:</strong> IoU</p>
-                <p class="example-meta task-metric"><strong>Metric:</strong> Answer accuracy</p>
-              </div>
-              <div class="task-visual-grid">
-                <div class="bbox-figure">
-                  <img src="./static/images/sample-page-figure.png" alt="Grounding on evidence pages">
-                  <span class="bbox-rect cyan" style="left:29.0196%; top:67.5%; width:43.0980%; height:11.6060%;"></span>
-                  <p class="image-bottom-caption"><strong>Predict bounding boxes</strong></p>
-                </div>
-                <div class="bbox-figure crop-preview-figure">
-                  <img src="./static/images/sample-crop-output.png" alt="Answering from predicted crop regions">
-                  <p class="image-bottom-caption"><strong>Answer by crop predicted region(s)</strong></p>
-                </div>
-              </div>
-            </div>
-
-            <div class="column is-5-desktop task-note-column">
-              <div class="task-note-card">
-                <p class="task-note-label">Evaluation pipeline</p>
-                <ul class="compact-list">
-                  <li><strong>1. Grounding:</strong> the grounding model predicts one or more answer-relevant bounding boxes.</li>
-                  <li><strong>2. Crop:</strong> crop the page image to obtain the corresponding predicted regions.</li>
-                  <li><strong>3. Answer:</strong> use <strong>Qwen3.5-27B</strong> as the fixed generation model to produce the final answer.</li>
-                </ul>
-              </div>
-
-             
-            </div>
-          </div>
-        </article>
       </div>
     </div>
   </section>
@@ -622,47 +622,47 @@
       <p class="section-kicker">Main Results</p>
       <h2 class="title is-2 section-title">Top-line benchmark performance</h2>
       <p class="section-copy">
-        The tables below summarize the main benchmark numbers. Task 1 measures answer
-        accuracy under different evidence granularities, while Task 2 evaluates both grounding
-        quality and crop-then-answer performance.
+        The tables below summarize the main benchmark numbers. Task 1 evaluates both grounding
+        quality and crop-then-answer performance, while Task 2 measures answer
+        accuracy under different evidence granularities.
       </p>
 
       <div class="results-summary-grid">
         <article class="stats-card result-highlight">
-          <p class="results-eyebrow">Task 1 · Whole document</p>
-          <p class="results-name">Kimi-K2.5</p>
-          <p class="results-value">68.02%</p>
-          <p class="results-detail">Best answer accuracy with full-paper input.</p>
-        </article>
-        <article class="stats-card result-highlight">
-          <p class="results-eyebrow">Task 1 · Evidence page(s)</p>
-          <p class="results-name">GPT-5.2</p>
-          <p class="results-value">81.39%</p>
-          <p class="results-detail">Best answer accuracy when only evidence pages are given.</p>
-        </article>
-        <article class="stats-card result-highlight">
-          <p class="results-eyebrow">Task 1 · Evidence crop(s)</p>
-          <p class="results-name">GPT-5.2</p>
-          <p class="results-value">85.15%</p>
-          <p class="results-detail">Best answer accuracy on cropped evidence regions.</p>
-        </article>
-        <article class="stats-card result-highlight">
-          <p class="results-eyebrow">Task 2 · Mean IoU</p>
+          <p class="results-eyebrow">Task 1 · Mean IoU</p>
           <p class="results-name">Qwen3.5-397B-A17B</p>
           <p class="results-value">38.89%</p>
           <p class="results-detail">Best average overlap with gold evidence regions.</p>
         </article>
         <article class="stats-card result-highlight">
-          <p class="results-eyebrow">Task 2 ·  IoU@0.3</p>
+          <p class="results-eyebrow">Task 1 · IoU@0.3</p>
           <p class="results-name">Qwen3-VL-8B-SFT</p>
           <p class="results-value">57.92%</p>
           <p class="results-detail">Highest proportion of predictions with IoU greater than 0.3.</p>
         </article>
         <article class="stats-card result-highlight">
-          <p class="results-eyebrow">Task 2 · Final accuracy</p>
+          <p class="results-eyebrow">Task 1 · Final accuracy</p>
           <p class="results-name">Qwen3.5-27B</p>
           <p class="results-value">51.26%</p>
           <p class="results-detail">Best crop-then-answer accuracy in the grounding pipeline.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 2 · Whole document</p>
+          <p class="results-name">Kimi-K2.5</p>
+          <p class="results-value">68.02%</p>
+          <p class="results-detail">Best answer accuracy with full-paper input.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 2 · Evidence page(s)</p>
+          <p class="results-name">GPT-5.2</p>
+          <p class="results-value">81.39%</p>
+          <p class="results-detail">Best answer accuracy when only evidence pages are given.</p>
+        </article>
+        <article class="stats-card result-highlight">
+          <p class="results-eyebrow">Task 2 · Evidence crop(s)</p>
+          <p class="results-name">GPT-5.2</p>
+          <p class="results-value">85.15%</p>
+          <p class="results-detail">Best answer accuracy on cropped evidence regions.</p>
         </article>
       </div>
 
@@ -671,103 +671,6 @@
           <div class="results-card-header">
             <div>
               <p class="results-label">Task 1</p>
-              <h3>Evidence-Granularity-QA</h3>
-            </div>
-            <p class="results-subtitle">Metric: overall answer accuracy on benchmark QA pairs.</p>
-          </div>
-
-          <div class="results-table-shell">
-            <table class="table is-fullwidth results-table">
-              <thead>
-                <tr>
-                  <th>Model</th>
-                  <th>Whole document</th>
-                  <th>Evidence page(s)</th>
-                  <th>Evidence crop(s)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Qwen3-VL-8B</td>
-                  <td>9.30%</td>
-                  <td>60.51%</td>
-                  <td>65.87%</td>
-                </tr>
-                <tr>
-                  <td>Qwen3-VL-32B</td>
-                  <td>16.14%</td>
-                  <td>73.14%</td>
-                  <td>75.54%</td>
-                </tr>
-                <tr>
-                  <td>Qwen3-VL-235B-A22B</td>
-                  <td>40.30%</td>
-                  <td>70.49%</td>
-                  <td>75.42%</td>
-                </tr>
-                <tr>
-                  <td>Qwen3.5-27B</td>
-                  <td>42.95%</td>
-                  <td>69.69%</td>
-                  <td>77.02%</td>
-                </tr>
-                <tr>
-                  <td>Qwen3.5-122B-A10B</td>
-                  <td>37.58%</td>
-                  <td>68.95%</td>
-                  <td>73.01%</td>
-                </tr>
-                <tr>
-                  <td>Qwen3.5-397B-A17B</td>
-                  <td>36.23%</td>
-                  <td>68.08%</td>
-                  <td>73.75%</td>
-                </tr>
-                <tr>
-                  <td>InternVL3-38B</td>
-                  <td>10.23%</td>
-                  <td>48.18%</td>
-                  <td>64.14%</td>
-                </tr>
-                <tr>
-                  <td>Ernie-5</td>
-                  <td>38.51%</td>
-                  <td>77.39%</td>
-                  <td>81.89%</td>
-                </tr>
-                <tr>
-                  <td>Kimi-K2.5</td>
-                  <td class="results-best">68.02%</td>
-                  <td>79.98%</td>
-                  <td>81.21%</td>
-                </tr>
-                <tr>
-                  <td>Claude Sonnet 4.6</td>
-                  <td>43.99%</td>
-                  <td>68.45%</td>
-                  <td>74.31%</td>
-                </tr>
-                <tr>
-                  <td>GPT-5.2</td>
-                  <td>65.43%</td>
-                  <td class="results-best">81.39%</td>
-                  <td class="results-best">85.15%</td>
-                </tr>
-                 <tr>
-                  <td>Qwen3-VL-8B-SFT</td>
-                  <td>32.87%</td>
-                  <td>69.43%</td>
-                  <td>76.89%</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
-
-        <article class="stats-card results-card">
-          <div class="results-card-header">
-            <div>
-              <p class="results-label">Task 2</p>
               <h3>Grounding-Crop-then-Answer</h3>
             </div>
             <p class="results-subtitle">Metrics: valid grounding output, IoU, and final answer accuracy.</p>
@@ -912,6 +815,103 @@
             </table>
           </div>
         </article>
+
+        <article class="stats-card results-card">
+          <div class="results-card-header">
+            <div>
+              <p class="results-label">Task 2</p>
+              <h3>Evidence-Granularity-QA</h3>
+            </div>
+            <p class="results-subtitle">Metric: overall answer accuracy on benchmark QA pairs.</p>
+          </div>
+
+          <div class="results-table-shell">
+            <table class="table is-fullwidth results-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Whole document</th>
+                  <th>Evidence page(s)</th>
+                  <th>Evidence crop(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Qwen3-VL-8B</td>
+                  <td>9.30%</td>
+                  <td>60.51%</td>
+                  <td>65.87%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-32B</td>
+                  <td>16.14%</td>
+                  <td>73.14%</td>
+                  <td>75.54%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-235B-A22B</td>
+                  <td>40.30%</td>
+                  <td>70.49%</td>
+                  <td>75.42%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-27B</td>
+                  <td>42.95%</td>
+                  <td>69.69%</td>
+                  <td>77.02%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-122B-A10B</td>
+                  <td>37.58%</td>
+                  <td>68.95%</td>
+                  <td>73.01%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3.5-397B-A17B</td>
+                  <td>36.23%</td>
+                  <td>68.08%</td>
+                  <td>73.75%</td>
+                </tr>
+                <tr>
+                  <td>InternVL3-38B</td>
+                  <td>10.23%</td>
+                  <td>48.18%</td>
+                  <td>64.14%</td>
+                </tr>
+                <tr>
+                  <td>Ernie-5</td>
+                  <td>38.51%</td>
+                  <td>77.39%</td>
+                  <td>81.89%</td>
+                </tr>
+                <tr>
+                  <td>Kimi-K2.5</td>
+                  <td class="results-best">68.02%</td>
+                  <td>79.98%</td>
+                  <td>81.21%</td>
+                </tr>
+                <tr>
+                  <td>Claude Sonnet 4.6</td>
+                  <td>43.99%</td>
+                  <td>68.45%</td>
+                  <td>74.31%</td>
+                </tr>
+                <tr>
+                  <td>GPT-5.2</td>
+                  <td>65.43%</td>
+                  <td class="results-best">81.39%</td>
+                  <td class="results-best">85.15%</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL-8B-SFT</td>
+                  <td>32.87%</td>
+                  <td>69.43%</td>
+                  <td>76.89%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
       </div>
 
       <div class="results-analysis-head">
@@ -921,23 +921,23 @@
 
       <div class="results-figure-grid">
         <article class="visual-panel results-figure-card results-figure-wide">
-          <div class="results-task1-pair">
-            <div class="results-task1-panel">
-              <img src="./static/images/results-task1-granularity.png" alt="Task 1 accuracy comparison across evidence granularities">
-            </div>
-            <div class="results-task1-panel">
-              <img src="./static/images/results-task1-breakdown.png" alt="Task 1 average accuracy and question-type analysis">
-            </div>
-          </div>
+          <img src="./static/images/results-task1-grounding.png" alt="Task 1 grounding quality and answer accuracy analysis">
           <p class="visual-caption">
-            Task 1 overall accuracy improves as evidence becomes more focused, and the companion analysis shows that SPSR, SPMR, and MPMR form distinct difficulty bands rather than behaving like a single homogeneous QA set.
+            In Task 1, grounding quality and final answer accuracy are tightly coupled, while high-IoU localization remains substantially harder than coarse localization.
           </p>
         </article>
 
         <article class="visual-panel results-figure-card results-figure-wide">
-          <img src="./static/images/results-task2-grounding.png" alt="Task 2 grounding quality and answer accuracy analysis">
+          <div class="results-task1-pair">
+            <div class="results-task1-panel">
+              <img src="./static/images/results-task2-granularity.png" alt="Task 2 accuracy comparison across evidence granularities">
+            </div>
+            <div class="results-task1-panel">
+              <img src="./static/images/results-task2-breakdown.png" alt="Task 2 average accuracy and question-type analysis">
+            </div>
+          </div>
           <p class="visual-caption">
-            In Task 2, grounding quality and final answer accuracy are tightly coupled, while high-IoU localization remains substantially harder than coarse localization.
+            Task 2 overall accuracy improves as evidence becomes more focused, and the companion analysis shows that SPSR, SPMR, and MPMR form distinct difficulty bands rather than behaving like a single homogeneous QA set.
           </p>
         </article>
       </div>

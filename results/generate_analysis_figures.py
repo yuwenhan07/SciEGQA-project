@@ -43,8 +43,8 @@ def load_result_lines(preferred_names: list[str]) -> tuple[list[str], str]:
     raise FileNotFoundError(f"Could not find any of: {', '.join(preferred_names)}")
 
 
-def load_task1() -> tuple[pd.DataFrame, pd.DataFrame]:
-    lines, delimiter = load_result_lines(["task1-results.csv", "task1.md"])
+def load_granularity_results() -> tuple[pd.DataFrame, pd.DataFrame]:
+    lines, delimiter = load_result_lines(["task2-results.csv", "task2.md"])
     rows = []
     breakdown_rows = []
     for line in lines[2:]:
@@ -76,8 +76,8 @@ def load_task1() -> tuple[pd.DataFrame, pd.DataFrame]:
     return pd.DataFrame(rows), pd.DataFrame(breakdown_rows)
 
 
-def load_task2() -> pd.DataFrame:
-    lines, delimiter = load_result_lines(["task2-results.csv", "task2.md"])
+def load_grounding_results() -> pd.DataFrame:
+    lines, delimiter = load_result_lines(["task1-results.csv", "task1.md"])
     rows = []
     start_index = 1 if delimiter == "," else 2
     for line in lines[start_index:]:
@@ -109,8 +109,8 @@ def style_axes(ax) -> None:
     ax.spines["bottom"].set_color("#bfc7c1")
 
 
-def plot_task1_totals(task1: pd.DataFrame) -> None:
-    df = task1.sort_values("crop")
+def plot_task2_totals(granularity_results: pd.DataFrame) -> None:
+    df = granularity_results.sort_values("crop")
     y = np.arange(len(df))
     height = 0.22
 
@@ -124,24 +124,24 @@ def plot_task1_totals(task1: pd.DataFrame) -> None:
     ax.set_yticklabels(df["model"], fontsize=10)
     ax.set_xlim(0, 90)
     ax.set_xlabel("Answer accuracy (%)")
-    ax.set_title("Task 1: QA Accuracy under different input granularities", fontsize=16, loc="left", pad=14)
+    ax.set_title("Task 2: QA Accuracy under different input granularities", fontsize=16, loc="left", pad=14)
     ax.legend(frameon=False, ncol=3, loc="upper left", bbox_to_anchor=(0, 1.02))
 
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "results-task1-granularity.png", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "results-task2-granularity.png", bbox_inches="tight")
     plt.close(fig)
 
 
-def plot_task1_breakdown(task1_breakdown: pd.DataFrame) -> None:
+def plot_task2_breakdown(granularity_breakdown: pd.DataFrame) -> None:
     average_pivot = (
-        task1_breakdown.groupby(["reasoning", "granularity"], as_index=False)["accuracy"]
+        granularity_breakdown.groupby(["reasoning", "granularity"], as_index=False)["accuracy"]
         .mean()
         .pivot(index="reasoning", columns="granularity", values="accuracy")
         .loc[["SPSR", "SPMR", "MPMR"], ["Whole document", "Evidence page(s)", "Evidence crop(s)"]]
     )
 
     difficulty_df = (
-        task1_breakdown.pivot_table(index=["model", "reasoning"], columns="granularity", values="accuracy")
+        granularity_breakdown.pivot_table(index=["model", "reasoning"], columns="granularity", values="accuracy")
         .reset_index()
         .rename_axis(None, axis=1)
     )
@@ -158,7 +158,7 @@ def plot_task1_breakdown(task1_breakdown: pd.DataFrame) -> None:
 
     ax = axes[0]
     heatmap = ax.imshow(average_pivot.values, cmap="YlGnBu", vmin=0, vmax=90, aspect="auto")
-    ax.set_title("Task 1: Average accuracy by reasoning type and input granularity", fontsize=16, loc="left", pad=12)
+    ax.set_title("Task 2: Average accuracy by reasoning type and input granularity", fontsize=16, loc="left", pad=12)
     ax.set_xticks(range(len(average_pivot.columns)))
     ax.set_xticklabels(average_pivot.columns, rotation=12, ha="right", fontsize=13)
     ax.set_yticks(range(len(average_pivot.index)))
@@ -218,7 +218,7 @@ def plot_task1_breakdown(task1_breakdown: pd.DataFrame) -> None:
     ax.set_ylim(48, 90)
     ax.set_xlabel("Whole-document accuracy (%)")
     ax.set_ylabel("Cropped-evidence accuracy (%)")
-    ax.set_title("Task 1: Question types form distinct difficulty bands", fontsize=16, loc="left", pad=12)
+    ax.set_title("Task 2: Question types form distinct difficulty bands", fontsize=16, loc="left", pad=12)
     ax.text(
         0.02,
         0.96,
@@ -235,28 +235,28 @@ def plot_task1_breakdown(task1_breakdown: pd.DataFrame) -> None:
     cbar.set_label("Accuracy (%)", fontsize=10.5)
     cbar.ax.tick_params(labelsize=10)
 
-    fig.savefig(OUTPUT_DIR / "results-task1-breakdown.png", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "results-task2-breakdown.png", bbox_inches="tight")
     plt.close(fig)
 
 
-def plot_task2_relationship(task2: pd.DataFrame) -> None:
+def plot_task1_relationship(grounding_results: pd.DataFrame) -> None:
     fig, axes = plt.subplots(1, 2, figsize=(12.5, 5.2), dpi=200)
 
     ax = axes[0]
     style_axes(ax)
-    sizes = 60 + (task2["valid_ratio"] - task2["valid_ratio"].min()) * 12
+    sizes = 60 + (grounding_results["valid_ratio"] - grounding_results["valid_ratio"].min()) * 12
     scatter = ax.scatter(
-        task2["mean_iou"],
-        task2["acc"],
+        grounding_results["mean_iou"],
+        grounding_results["acc"],
         s=sizes,
-        c=task2["valid_ratio"],
+        c=grounding_results["valid_ratio"],
         cmap="YlGnBu",
         edgecolor="white",
         linewidth=0.8,
         alpha=0.95,
     )
-    corr = np.corrcoef(task2["mean_iou"], task2["acc"])[0, 1]
-    ax.set_title("Task 2: Better grounding strongly tracks better final answers", fontsize=14, loc="left", pad=12)
+    corr = np.corrcoef(grounding_results["mean_iou"], grounding_results["acc"])[0, 1]
+    ax.set_title("Task 1: Better grounding strongly tracks better final answers", fontsize=14, loc="left", pad=12)
     ax.set_xlabel("Mean IoU (%)")
     ax.set_ylabel("Final answer accuracy (%)")
     ax.text(0.02, 0.96, f"Pearson r = {corr:.2f}", transform=ax.transAxes, ha="left", va="top", fontsize=10, color=COLORS["accent"])
@@ -266,7 +266,7 @@ def plot_task2_relationship(task2: pd.DataFrame) -> None:
         (22.5, 50.5),
         (22.5, 48.0),
     ]
-    for (text_x, text_y), (_, row) in zip(label_positions, task2.nlargest(3, "acc").iterrows()):
+    for (text_x, text_y), (_, row) in zip(label_positions, grounding_results.nlargest(3, "acc").iterrows()):
         ax.annotate(
             row["model"],
             (row["mean_iou"], row["acc"]),
@@ -295,7 +295,7 @@ def plot_task2_relationship(task2: pd.DataFrame) -> None:
     cbar.set_label("Valid output ratio (%)")
 
     ax = axes[1]
-    threshold_df = task2.sort_values("iou03", ascending=False).head(8)
+    threshold_df = grounding_results.sort_values("iou03", ascending=False).head(8)
     y = np.arange(len(threshold_df))
     height = 0.22
     style_axes(ax)
@@ -310,7 +310,7 @@ def plot_task2_relationship(task2: pd.DataFrame) -> None:
     ax.legend(frameon=False, ncol=1, loc="lower right", fontsize=9.5, borderaxespad=0.6)
 
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "results-task2-grounding.png", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "results-task1-grounding.png", bbox_inches="tight")
     plt.close(fig)
 
 
@@ -325,11 +325,11 @@ def main() -> None:
             "ytick.labelsize": 10,
         }
     )
-    task1, task1_breakdown = load_task1()
-    task2 = load_task2()
-    plot_task1_totals(task1)
-    plot_task1_breakdown(task1_breakdown)
-    plot_task2_relationship(task2)
+    granularity_results, granularity_breakdown = load_granularity_results()
+    grounding_results = load_grounding_results()
+    plot_task2_totals(granularity_results)
+    plot_task2_breakdown(granularity_breakdown)
+    plot_task1_relationship(grounding_results)
     print("Generated analysis figures in", OUTPUT_DIR)
 
 
