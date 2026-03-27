@@ -923,7 +923,7 @@
         <article class="visual-panel results-figure-card results-figure-wide">
           <img src="./static/images/results-task1-grounding.png" alt="Task 1 grounding quality and answer accuracy analysis">
           <p class="visual-caption">
-            In Task 1, grounding quality and final answer accuracy are tightly coupled, while high-IoU localization remains substantially harder than coarse localization.
+            In Task 1, grounding quality and final answer accuracy are tightly coupled, since the predicted bounding boxes determine the visual content provided to the downstream QA model. When the localized regions deviate from the true evidence, the cropped inputs may contain incomplete or irrelevant information, which easily leads to incorrect answers. Meanwhile, achieving high-IoU localization remains substantially harder than coarse localization, suggesting that current models still struggle to precisely capture semantically complete evidence regions in complex scientific documents.
           </p>
         </article>
 
@@ -937,7 +937,7 @@
             </div>
           </div>
           <p class="visual-caption">
-            Task 2 overall accuracy improves as evidence becomes more focused, and the companion analysis shows that SPSR, SPMR, and MPMR form distinct difficulty bands rather than behaving like a single homogeneous QA set.
+            In Task 2, overall QA accuracy improves as evidence becomes more focused, from document-level to page-level and finally region-level inputs. This trend indicates that reducing irrelevant context helps models concentrate on the most informative regions for reasoning. Further analysis shows that SPSR, SPMR, and MPMR form distinct difficulty bands rather than behaving like a single homogeneous QA set, with performance gradually decreasing as reasoning complexity increases.
           </p>
         </article>
       </div>
