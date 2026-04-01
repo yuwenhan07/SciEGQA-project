@@ -1340,6 +1340,36 @@ img {
   margin-top: 0.9rem;
 }
 
+.citation-card {
+  margin-top: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow);
+}
+
+.citation-card .section-copy {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.citation-block {
+  margin: 0;
+  padding: 1.15rem 1.25rem;
+  border-radius: 0.9rem;
+  background: rgba(16, 42, 44, 0.95);
+  color: #f4f4ee;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.citation-block code {
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
 .site-footer {
   padding: 2.5rem 1.5rem 3rem;
   background: rgba(16, 42, 44, 0.96);
@@ -1348,6 +1378,11 @@ img {
 .site-footer h3 {
   color: #f4f4ee;
   margin-bottom: 0.55rem;
+}
+
+.site-footer a {
+  color: #f4f4ee;
+  text-decoration: underline;
 }
 
 .site-footer p {

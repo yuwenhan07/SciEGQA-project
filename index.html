@@ -41,6 +41,7 @@
           <a class="navbar-item" href="#results">Main Results</a>
           <a class="navbar-item" href="#paper">Paper</a>
           <a class="navbar-item" href="#downloads">Downloads</a>
+          <a class="navbar-item" href="#citation">Citation</a>
         </div>
       </div>
     </div>
@@ -72,7 +73,7 @@
               <span class="author-sep">·</span>
               <span class="author-block">Jizhou Huang</span>
             </div>
-
+            
             <p class="hero-summary">
               SciEGQA targets a practical but under-explored setting: answering questions on scientific papers while
               explicitly grounding each answer in the visual evidence regions that support it. Each sample pairs the
@@ -89,9 +90,9 @@
 
             <div class="publication-links">
               <span class="link-block">
-                <a href="./static/docs/ACM_SciEGQA.pdf" class="external-link button is-dark is-rounded is-medium">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>Paper PDF</span>
+                <a href="https://arxiv.org/abs/2511.15090" class="external-link button is-dark is-rounded is-medium">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv Paper</span>
                 </a>
               </span>
               <span class="link-block">
@@ -137,7 +138,7 @@
           <div class="column is-5-desktop">
             <div class="hero-sidecard">
               <p class="sidecard-label">Paper Preview</p>
-              <a href="./static/docs/ACM_SciEGQA.pdf">
+              <a href="https://arxiv.org/abs/2511.15090">
                 <img src="./static/images/paper-preview.png?v=20260330" alt="SciEGQA paper preview">
               </a>
               <div class="sidecard-grid">
@@ -158,7 +159,7 @@
                 </div>
                 <div>
                   <p class="sidecard-key">Evidence</p>
-                  <p class="sidecard-value">Evidence page(s)</p>
+                  <p class="sidecard-value">Evidence doc and page(s)</p>
                   <p class="sidecard-value">Evidence region(s)</p>
                 </div>
               </div>
@@ -951,9 +952,9 @@
           <div class="paper-card">
             <img src="./static/images/paper-preview.png?v=20260330" alt="Paper preview">
             <div class="paper-links">
-              <a href="./static/docs/ACM_SciEGQA.pdf" class="button is-dark is-rounded">
-                <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                <span>Open PDF</span>
+              <a href="https://arxiv.org/abs/2511.15090" class="button is-dark is-rounded">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>Open on arXiv</span>
               </a>
               <a href="https://github.com/yuwenhan07/SciEGQA" class="button is-light is-rounded">
                 <span class="icon"><i class="fab fa-github"></i></span>
@@ -1016,11 +1017,33 @@
           <h3>Training Set on Hugging Face</h3>
           <p>The large-scale training resource derived from the automatic PDF-to-grounded-QA pipeline.</p>
         </a>
-        <a class="resource-card" href="./static/docs/ACM_SciEGQA.pdf">
+        <a class="resource-card" href="https://arxiv.org/abs/2511.15090">
           <span class="resource-icon"><i class="ai ai-open-access"></i></span>
-          <h3>Local Paper PDF</h3>
-          <p>The project page bundles your ACM-style SciEGQA paper PDF for direct reading and sharing.</p>
+          <h3>arXiv Paper</h3>
+          <p>Read the latest SciEGQA preprint on arXiv, including the abstract, metadata, and downloadable PDF.</p>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="citation" class="section section-shell">
+    <div class="container is-max-widescreen">
+      <p class="section-kicker">Citation</p>
+      <h2 class="title is-2 section-title">BibTeX</h2>
+
+      <div class="citation-card">
+        <p class="section-copy">
+          If you use SciEGQA in your research, please cite the arXiv paper below.
+        </p>
+        <pre class="citation-block"><code>@misc{yu2026sciegqadatasetscientificevidencegrounded,
+      title={SciEGQA: A Dataset for Scientific Evidence-Grounded Question Answering and Reasoning}, 
+      author={Wenhan Yu and Zhaoxi Zhang and Wang Chen and Guanqiang Qi and Weikang Li and Lei Sha and Deguo Xia and Jizhou Huang},
+      year={2026},
+      eprint={2511.15090},
+      archivePrefix={arXiv},
+      primaryClass={cs.DB},
+      url={https://arxiv.org/abs/2511.15090}, 
+}</code></pre>
       </div>
     </div>
   </section>
@@ -1037,7 +1060,10 @@
         </div>
         <div class="column is-5-desktop">
           <h3>Citation</h3>
-          <p>If you use SciEGQA in your research, please cite the project once the paper and citation entry are released.</p>
+          <p>
+            <a href="#citation">Use the BibTeX citation above</a> or cite
+            <a href="https://arxiv.org/abs/2511.15090">arXiv:2511.15090</a>.
+          </p>
         </div>
       </div>
     </div>
