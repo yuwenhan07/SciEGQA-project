@@ -65,7 +65,7 @@ def normalize_model(name: str) -> str:
 
 
 def parse_pct(text: str) -> float:
-    return float(text.strip().rstrip("%"))
+    return float(text.strip().rstrip("%")) if text.strip() else float("nan")
 
 
 def load_result_lines(preferred_names: list[str]) -> tuple[list[str], str]:
@@ -121,7 +121,7 @@ def load_grounding_results() -> pd.DataFrame:
         rows.append(
             {
                 "model": normalize_model(parts[0]),
-                "valid_output": int(parts[1]),
+                "valid_output": int(parts[1]) if parts[1].strip() else None,
                 "valid_ratio": parse_pct(parts[2]),
                 "mean_iou": parse_pct(parts[3] if delimiter == "," else parts[6]),
                 "iou03": parse_pct(parts[4] if delimiter == "," else parts[7]),
@@ -167,6 +167,7 @@ def plot_task2_totals(granularity_results: pd.DataFrame) -> None:
 
 
 def plot_task2_breakdown(granularity_breakdown: pd.DataFrame) -> None:
+    granularity_breakdown = granularity_breakdown.dropna(subset=["accuracy"])
     average_pivot = (
         granularity_breakdown.groupby(["reasoning", "granularity"], as_index=False)["accuracy"]
         .mean()
